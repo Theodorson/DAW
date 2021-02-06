@@ -1,0 +1,55 @@
+﻿@using Shopping_Site.Models
+
+
+<br />
+<h3><ins>Your Cart</ins></h3>
+<br />
+<br/>
+<h3 class="text-danger font-weight-bold">@ViewBag.Message</h3>
+<table class="table">
+    <tr>
+        <th>Remove</th>
+        <th>Increase Quantity</th>
+        <th>Decrease Quantity</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Sub Total</th>
+    </tr>
+    @foreach (CartItem item in (List<CartItem>)Session["cart"])
+    {
+<tr>
+    <td><a href='@Url.Action("Remove", "Cart", new { id = item.Product.PhoneID })'>Remove</a></td>
+    <td><a href="@Url.Action("IncreaseQuantity", "Cart", new { id = item.Product.PhoneID })"><h5>++</h5></a></td>
+    <td><a href="@Url.Action("DecreaseQuantity", "Cart", new { id = item.Product.PhoneID })"><h5>--</h5></a></td>
+    <td>@item.Product.Name</td>
+    <td><img src="@item.Product.Image" width="60" /> </td>
+    <td>@item.Product.Price $</td>
+    <td>@item.Quantity</td>
+    <td>@(item.Product.Price * item.Quantity) $</td>
+</tr>
+    }
+    <tr>
+        <td align="right" colspan="6"><h3 class="font-weight-bold">Sum</h3></td>
+        <td>
+            @{
+                List<CartItem> cart = (List<CartItem>)Session["cart"];
+                var total = cart.Sum(item => item.Product.Price * item.Quantity);
+            }
+            <h3 class="font-weight-bold">@total $</h3>
+        </td>
+    </tr>
+</table>
+
+<div class="d-flex justify-content-center">
+    @using (Html.BeginForm(actionName: "BuyNow", controllerName: "Cart", method: FormMethod.Get))
+    {
+        <button class="btn btn-danger btn-lg" style="width: 200px;">Buy now</button>
+
+    }
+   
+
+</div>
+<br>
+<a href="@Url.Action("Index", "Phone")">Continue Shopping</a>

@@ -1,0 +1,40 @@
+﻿@model Shopping_Site.Models.Processor
+
+
+<br />
+<div class=" d-flex justify-content-center">
+    <h3>Update Processor @Model.Model</h3>
+</div>
+<br />
+
+<div class=" d-flex justify-content-center">
+    @using (Html.BeginForm(actionName: "Edit", controllerName: "Processor"))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+        @Html.HiddenFor(b => b.ProcessorID)
+
+
+
+        @Html.LabelFor(b => b.Model)
+        <br />
+        @Html.TextBoxFor(b => b.Model, null, new { placeholder = "Type in the processor's model name", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Model, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.Cores_number, "Cores number")
+        <br />
+        @Html.TextBoxFor(b => b.Cores_number, null, new { placeholder = "Type in the processor's cores number", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Cores_number, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.Frequency)
+        <br />
+        @Html.TextBoxFor(b => b.Frequency, null, new { placeholder = "Type in the processor's frequency", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Frequency, "", new { @class = "text-danger" })
+        <br />
+
+
+        <button class="btn btn-primary" type="submit">Update</button>
+    }
+</div>
+
+
+
+

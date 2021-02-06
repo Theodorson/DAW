@@ -1,0 +1,37 @@
+﻿
+<div class="row " style="margin-top: 5px; ">
+            @foreach (var phone in ViewBag.Phones)
+            {
+                <div class="col-md-4" style="margin-top: 35px">
+                    <div class="card bg-dark text-white" style="width: 14.5rem;">
+                        <img class="card-img-top" src=@phone.Image alt="Card image cap" >
+                        <div class="card-body">
+                            <h5 class="card-title">@phone.Name</h5>
+                            <p class="card-text">Brand: @phone.Brand</p>
+                            @if (phone.Stock)
+                            {
+                                <p class="card-text">In Stock</p>
+                            }
+                            else {
+                                 <p class="card-text">Not in Stock</p>
+                            }
+                            <p class="card-text"> <h4> Price: @phone.Price $ </h4> </p>
+                            @using (Html.BeginForm(actionName: "Details", controllerName: "Phone", method: FormMethod.Get, routeValues: new { id = phone.PhoneID }))
+                            {
+                                <button class="btn btn-primary" style="width: 150px;">Details</button>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+   
+    </div>
+
+
+
+
+
+
+
+

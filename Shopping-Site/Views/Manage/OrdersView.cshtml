@@ -1,0 +1,23 @@
+﻿<br />
+<h2>Orders list</h2>
+<br />
+<table class="table">
+    <thead>
+    <th>Last Name</th>
+    <th>Order Data</th>
+    <th>Details</th>
+    </thead>
+    <tbody>
+        @foreach (var order in ViewBag.Orders)
+        {
+        <tr>
+            <td>@order.Last_name </td>
+            <td>@order.Data </td>
+            <td>@Html.ActionLink("Details", "Details", new { id = order.CartOrderCompletionID })</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+

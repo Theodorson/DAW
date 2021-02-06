@@ -1,0 +1,40 @@
+﻿@model Shopping_Site.Models.Battery
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<h2>Details</h2>
+<br />
+
+
+<br />
+<table class="w-25 table">
+    <tbody>
+        <tr>
+            <td>@Html.LabelFor(p => p.Name, "Name:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Name)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(p => p.Capacity, "Capacity:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Capacity) mAh</td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Battery", method: FormMethod.Get, routeValues: new { id = Model.BatteryID }))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+}
+
+<br />
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Battery", method: FormMethod.Post, routeValues: new { id = Model.BatteryID }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Delete</button>
+}
+
+<br />
+@Html.ActionLink("Add battery", "New", "Battery")

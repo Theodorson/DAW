@@ -1,0 +1,21 @@
+﻿<br />
+<h2>Users list</h2>
+<br />
+<table class="w-25 table">
+    <thead>
+    <th>Email</th>
+    <th>Details</th>
+    </thead>
+    <tbody>
+        @foreach (var user in ViewBag.Users)
+        {
+        <tr>
+            <td>@user.Email </td>
+            <td>@Html.ActionLink("Details", "DetailsUser", new { id = user.Id })</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+

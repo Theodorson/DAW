@@ -1,0 +1,109 @@
+﻿@model Shopping_Site.Models.CartOrderCompletionBirthViewModel
+@using Shopping_Site.Models
+
+@{
+    ViewBag.Title = "OrderCompletion";
+}
+</br>
+<h2 class="d-flex justify-content-center">Order details</h2>
+</br>
+<div class=" d-flex justify-content-center">
+    @using (Html.BeginForm(actionName: "BuyNow", controllerName: "Cart", method: FormMethod.Post))
+    {
+
+        @Html.LabelFor(b => b.First_name, "First name")
+        <br />
+        @Html.TextBoxFor(b => b.First_name, null, new { placeholder = "Type in your first name", @class = "form-control" }) @Html.ValidationMessageFor(b => b.First_name, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.Last_name, "Last name")
+        <br />
+        @Html.TextBoxFor(b => b.Last_name, null, new { placeholder = "Type in your last name", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Last_name, "", new { @class = "text-danger" })
+        <br />
+
+        <label>Birth date:</label>
+        <br />
+        @Html.TextBoxFor(p => p.BirthDay, null, new { placeholder = "Day", @class = "form-control", @style = "margin-bottom:3px" })
+        @Html.ValidationMessageFor(p => p.BirthDay, "", new { @class = "text-danger" })
+
+        @Html.TextBoxFor(p => p.BirthMonth, null, new { placeholder = "Month", @class = "form-control", @style = "margin-bottom:3px" })
+        @Html.ValidationMessageFor(p => p.BirthMonth, "", new { @class = "text-danger" })
+
+        @Html.TextBoxFor(p => p.BirthYear, null, new { placeholder = "Year", @class = "form-control", @style = "margin-bottom:3px", @type = "number" })
+        @Html.ValidationMessageFor(p => p.BirthYear, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b => b.Phone_number, "Phone number")
+        <br />
+        @Html.TextBoxFor(b => b.Phone_number, null, new { placeholder = "Type in your phone number", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Phone_number, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b => b.Region)
+        <br />
+        @Html.DropDownListFor(b => b.Region,
+              new SelectList(
+                  new List<SelectListItem>
+                  {
+                      new SelectListItem { Text = "Alba", Value = ((int)CartOrderCompletion.RegionName.Alba).ToString()},
+                      new SelectListItem { Text = "Arad", Value = ((int)CartOrderCompletion.RegionName.Arad).ToString()},
+                      new SelectListItem { Text = "Arges", Value = ((int)CartOrderCompletion.RegionName.Arges).ToString()},
+                      new SelectListItem { Text = "Bacau", Value = ((int)CartOrderCompletion.RegionName.Bacau).ToString()},
+                      new SelectListItem { Text = "Bihor", Value = ((int)CartOrderCompletion.RegionName.Bihor).ToString()},
+                      new SelectListItem { Text = "Bistrita Nasaud", Value = ((int)CartOrderCompletion.RegionName.Bistrita_Nasaud).ToString()},
+                      new SelectListItem { Text = "Botosani", Value = ((int)CartOrderCompletion.RegionName.Botosani).ToString()},
+                      new SelectListItem { Text = "Brasov", Value = ((int)CartOrderCompletion.RegionName.Brasov).ToString()},
+                      new SelectListItem { Text = "Braila", Value = ((int)CartOrderCompletion.RegionName.Braila).ToString()},
+                      new SelectListItem { Text = "Bucuresti", Value = ((int)CartOrderCompletion.RegionName.Bucuresti).ToString()},
+                      new SelectListItem { Text = "Buzau", Value = ((int)CartOrderCompletion.RegionName.Buzau).ToString()},
+                      new SelectListItem { Text = "Caras Severin", Value = ((int)CartOrderCompletion.RegionName.Caras_Severin).ToString()},
+                      new SelectListItem { Text = "Calarasi", Value = ((int)CartOrderCompletion.RegionName.Calarasi).ToString()},
+                      new SelectListItem { Text = "Cluj", Value = ((int)CartOrderCompletion.RegionName.Cluj).ToString()},
+                      new SelectListItem { Text = "Constanta", Value = ((int)CartOrderCompletion.RegionName.Constanta).ToString()},
+                      new SelectListItem { Text = "Covasna", Value = ((int)CartOrderCompletion.RegionName.Covasna).ToString()},
+                      new SelectListItem { Text = "Dambovita", Value = ((int)CartOrderCompletion.RegionName.Dambovita).ToString()},
+                      new SelectListItem { Text = "Dolj", Value = ((int)CartOrderCompletion.RegionName.Dolj).ToString()},
+                      new SelectListItem { Text = "Galati", Value = ((int)CartOrderCompletion.RegionName.Galati).ToString()},
+                      new SelectListItem { Text = "Giurgiu", Value = ((int)CartOrderCompletion.RegionName.Giurgiu).ToString()},
+                      new SelectListItem { Text = "Gorj", Value = ((int)CartOrderCompletion.RegionName.Gorj).ToString()},
+                      new SelectListItem { Text = "Harghita", Value = ((int)CartOrderCompletion.RegionName.Harghita).ToString()},
+                      new SelectListItem { Text = "Hunedoara", Value = ((int)CartOrderCompletion.RegionName.Hunedoara).ToString()},
+                      new SelectListItem { Text = "Ialomita", Value = ((int)CartOrderCompletion.RegionName.Ialomita).ToString()},
+                      new SelectListItem { Text = "Iasi", Value = ((int)CartOrderCompletion.RegionName.Iasi).ToString()},
+                      new SelectListItem { Text = "Ilfov", Value = ((int)CartOrderCompletion.RegionName.Ilfov).ToString()},
+                      new SelectListItem { Text = "Maramures", Value = ((int)CartOrderCompletion.RegionName.Maramures).ToString()},
+                      new SelectListItem { Text = "Mehedinti", Value = ((int)CartOrderCompletion.RegionName.Mehedinti).ToString()},
+                      new SelectListItem { Text = "Mures", Value = ((int)CartOrderCompletion.RegionName.Mures).ToString()},
+                      new SelectListItem { Text = "Neamt", Value = ((int)CartOrderCompletion.RegionName.Neamt).ToString()},
+                      new SelectListItem { Text = "Olt", Value = ((int)CartOrderCompletion.RegionName.Olt).ToString()},
+                      new SelectListItem { Text = "Prahova", Value = ((int)CartOrderCompletion.RegionName.Prahova).ToString()},
+                      new SelectListItem { Text = "Satu Mare", Value = ((int)CartOrderCompletion.RegionName.Satu_Mare).ToString()},
+                      new SelectListItem { Text = "Salaj", Value = ((int)CartOrderCompletion.RegionName.Salaj).ToString()},
+                      new SelectListItem { Text = "Sibiu", Value = ((int)CartOrderCompletion.RegionName.Sibiu).ToString()},
+                      new SelectListItem { Text = "Suceava", Value = ((int)CartOrderCompletion.RegionName.Suceava).ToString()},
+                      new SelectListItem { Text = "Teleorman", Value = ((int)CartOrderCompletion.RegionName.Teleorman).ToString()},
+                      new SelectListItem { Text = "Timis", Value = ((int)CartOrderCompletion.RegionName.Timis).ToString()},
+                      new SelectListItem { Text = "Tulcea", Value = ((int)CartOrderCompletion.RegionName.Tulcea).ToString()},
+                      new SelectListItem { Text = "Vaslui", Value = ((int)CartOrderCompletion.RegionName.Vaslui).ToString()},
+                      new SelectListItem { Text = "Valcea", Value = ((int)CartOrderCompletion.RegionName.Valcea).ToString()},
+                      new SelectListItem { Text = "Vrancea", Value = ((int)CartOrderCompletion.RegionName.Vrancea).ToString()},
+                  }, "Text", "Text"),
+              "Select region",
+              new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.Region, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.City, "City")
+        <br />
+        @Html.TextBoxFor(b => b.City, null, new { placeholder = "Type in your city name", @class = "form-control" }) @Html.ValidationMessageFor(b => b.City, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.Address, "Address")
+        <br />
+        @Html.TextBoxFor(b => b.Address, null, new { placeholder = "Type in your address ", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Address, "", new { @class = "text-danger" })
+        <br />
+
+        <button class="btn btn-success" type="submit">Complete the order</button>
+    }
+</div>

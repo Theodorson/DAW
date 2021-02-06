@@ -1,0 +1,34 @@
+﻿@model Shopping_Site.Models.Battery
+
+<br />
+<div class=" d-flex justify-content-center">
+    <h3>Update Battery @Model.Name</h3>
+</div>
+<br />
+
+<div class=" d-flex justify-content-center">
+    @using (Html.BeginForm(actionName: "Edit", controllerName: "Battery"))
+    {
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+        @Html.HiddenFor(b => b.BatteryID)
+
+
+
+        @Html.LabelFor(b => b.Name)
+        <br />
+        @Html.TextBoxFor(b => b.Name, null, new { placeholder = "Type in the battery's name", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.Capacity)
+        <br />
+        @Html.TextBoxFor(b => b.Capacity, null, new { placeholder = "Type in the battery's capacity", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Capacity, "", new { @class = "text-danger" })
+        <br />
+
+
+        <button class="btn btn-primary" type="submit">Update</button>
+    }
+</div>
+
+
+
+

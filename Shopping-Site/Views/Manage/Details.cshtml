@@ -1,0 +1,68 @@
+﻿@model Shopping_Site.Models.CartOrderCompletion
+@using Shopping_Site.Models
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<h2>Details</h2>
+<br />
+
+
+<br />
+<table class="w-75 table">
+    <tbody>
+        <tr>
+            <td>@Html.LabelFor(p => p.Last_name, "Last name:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Last_name)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(p => p.First_name, "First name:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.First_name)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("Birth: ", new { style = "margin-right:10px" })</td>
+            <td>@ViewBag.birth</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(p => p.Phone_number, "Phone number:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Phone_number)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(p => p.Region, "Region:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Region)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(p => p.City, "City:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.City)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(p => p.Address, "Address:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Address)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(p => p.Data, "Order data:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Data)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("Order products (Product Name, Brand, Quantity):", new { style = "margin-right:10px" })</td>
+            <td>
+                @Html.DisplayFor(p => p.Products)
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Manage", method: FormMethod.Post, routeValues: new { id = Model.CartOrderCompletionID }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button style="margin-right:5px" class="btn btn-primary" type="submit">Delete</button>
+}

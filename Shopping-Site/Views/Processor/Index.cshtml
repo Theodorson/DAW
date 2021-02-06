@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Processors list</h2>
+<br />
+<table class="table">
+    <thead>
+    <th>Model</th>
+    <th>Details</th>
+    </thead>
+    <tbody>
+        @foreach (var processor in ViewBag.Processors)
+        {
+        <tr>
+            <td>@processor.Model</td>
+            <td>@Html.ActionLink("Details", "Details", new { id = processor.ProcessorID })</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+@Html.ActionLink("Add processor", "New", "Processor")

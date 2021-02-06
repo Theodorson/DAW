@@ -1,0 +1,55 @@
+﻿@model Shopping_Site.Models.Camera
+@using Shopping_Site.Models
+<br />
+<div class=" d-flex justify-content-center">
+    <h3>Add new Camera</h3>
+</div>
+<br />
+
+<div class=" d-flex justify-content-center">
+    @using (Html.BeginForm(actionName: "New", controllerName: "Camera", method: FormMethod.Post))
+    {
+
+        @Html.LabelFor(b => b.Resolution)
+        <br />
+        @Html.TextBoxFor(b => b.Resolution, null, new { placeholder = "Type in the camera's resolution", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Resolution, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.Flash)
+        <br />
+        @Html.CheckBoxFor(b => b.Flash)
+        <br />
+
+        @Html.LabelFor(b => b.Type)
+        <br />
+        @Html.DropDownListFor(b => b.Type,
+              new SelectList(
+                  new List<SelectListItem>
+                  {
+                      new SelectListItem { Text = "Main Camera", Value = ((int)Camera.TypeName.MainCamera).ToString()},
+                      new SelectListItem { Text = "Front Camera", Value = ((int)Camera.TypeName.FrontCamera).ToString()},
+                  }, "Text", "Text"),
+              "Select one camera type",
+              new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.Type, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.FeaturesList, "Choose features:")
+        <br />
+        for (int i = 0; i < Model.FeaturesList.Count(); i++)
+        {
+            @Html.HiddenFor(b => b.FeaturesList[i].Id)
+            @Html.HiddenFor(b => b.FeaturesList[i].Name)
+            @Html.CheckBoxFor(b => b.FeaturesList[i].Checked)
+            @Html.DisplayFor(b => b.FeaturesList[i].Name)
+            <br />
+        }
+        <br />
+
+
+        <button class="btn btn-primary" type="submit">Create</button>
+    }
+</div>
+
+
+

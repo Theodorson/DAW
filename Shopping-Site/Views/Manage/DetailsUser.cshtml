@@ -1,0 +1,19 @@
+﻿@model  Shopping_Site.Models.ApplicationUser
+<br />
+<h2>Users list</h2>
+<br />
+<table class="w-50 table">
+    <thead>
+    <th>Email</th>
+    <th>Role</th>
+    </thead>
+    <tbody>
+            <tr>
+                <td>@Html.DisplayFor(u => u.Email)</td>
+                <td>@ViewBag.UserRole</td>
+            </tr>
+    </tbody>
+</table>
+
+
+

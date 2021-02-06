@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Cameras list</h2>
+<br />
+<table class="table">
+    <thead>
+    <th>Resolution</th>
+    <th>Details</th>
+    </thead>
+    <tbody>
+        @foreach (var camera in ViewBag.Cameras)
+        {
+            <tr>
+                <td>@camera.Resolution MP</td>
+                <td>@Html.ActionLink("Details", "Details", new { id = camera.CameraID })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+@Html.ActionLink("Add camera", "New", "Camera")

@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Batteries list</h2>
+<br />
+<table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Details</th>
+    </thead>
+    <tbody>
+        @foreach (var battery in ViewBag.Batteries)
+        {
+            <tr>
+                <td>@battery.Name</td>
+                <td>@Html.ActionLink("Details", "Details", new { id = battery.BatteryID })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+@Html.ActionLink("Add battery", "New", "Battery")

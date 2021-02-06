@@ -1,0 +1,66 @@
+﻿@model Shopping_Site.Models.Camera
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<h2>Details</h2>
+<br />
+
+
+<table class="w-50 table">
+    <tbody>
+        <tr>
+            <td>@Html.LabelFor(p => p.Resolution, "Resolution:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Resolution) MP</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Type, "Type:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Type)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Flash, "Flash:", new { style = "margin-right:10px" })</td>
+            @if (Model.Flash)
+            {
+                <td>Yes</td>
+            }
+            else
+            {
+                <td>No</td>
+            }
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Features, "Features:", new { style = "margin-right:5px" })</td>
+            @{ 
+                var featuresConcat = "";
+            }
+            @if (Model.Features.Count > 0)
+            {
+                foreach (var feature in Model.Features)
+                {
+                    featuresConcat += feature.Name + ", ";
+                }
+                featuresConcat = featuresConcat.Remove(featuresConcat.Length - 2, 2);
+            <td>@featuresConcat</td>
+            }
+        </tr>   
+
+
+    </tbody>
+</table>
+
+<br />
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Camera", method: FormMethod.Get, routeValues: new { id = Model.CameraID }))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+}
+
+<br />
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Camera", method: FormMethod.Post, routeValues: new { id = Model.CameraID }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Delete</button>
+}
+
+<br />
+@Html.ActionLink("Add new camera", "New", "Camera")

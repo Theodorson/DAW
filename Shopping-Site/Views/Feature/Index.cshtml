@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Processors list</h2>
+<br />
+<table class="table">
+    <thead>
+    <th>Name</th>
+    <th>Details</th>
+    </thead>
+    <tbody>
+        @foreach (var feature in ViewBag.Features)
+        {
+        <tr>
+            <td>@feature.Name</td>
+            <td>@Html.ActionLink("Details", "Details", new { id = feature.FeatureID })</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+@Html.ActionLink("Add feature", "New", "Feature")

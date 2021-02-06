@@ -1,0 +1,23 @@
+﻿@model Shopping_Site.Models.Feature
+
+<br />
+<div class=" d-flex justify-content-center">
+    <h3>Add new Feature</h3>
+</div>
+<br />
+
+<div class=" d-flex justify-content-center">
+    @using (Html.BeginForm(actionName: "New", controllerName: "Feature", method: FormMethod.Post))
+    {
+
+        @Html.LabelFor(b => b.Name)
+        <br />
+        @Html.TextBoxFor(b => b.Name, null, new { placeholder = "Type in the feature's name", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
+        <br />
+
+        <button class="btn btn-primary" type="submit">Create</button>
+    }
+</div>
+
+
+

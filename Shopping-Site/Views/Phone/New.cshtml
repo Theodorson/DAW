@@ -1,0 +1,146 @@
+﻿@model Shopping_Site.Models.Phone
+@using Shopping_Site.Models
+<br />
+<div class=" d-flex justify-content-center">
+    <h3>Add new phone to Shopping-Site</h3>
+</div>
+
+
+<div class=" d-flex justify-content-center">
+    @using (Html.BeginForm(actionName: "New", controllerName: "Phone", method: FormMethod.Post))
+    {
+
+        @Html.LabelFor(b => b.Name)
+        <br />
+        @Html.TextBoxFor(b => b.Name, null, new { placeholder = "Type in the phone's name", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b => b.Brand)
+        <br />
+        @Html.TextBoxFor(b => b.Brand, null, new { placeholder = "Type in the phone's brand", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Brand, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b => b.Capacity)
+        <br />
+        @Html.TextBoxFor(b => b.Capacity, null, new { placeholder = "Type in the phone's capacity", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Capacity, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b => b.Memory)
+        <br />
+        @Html.TextBoxFor(b => b.Memory, null, new { placeholder = "Type in the phone's memory", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Memory, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b => b.Color)
+        <br />
+        @Html.DropDownListFor(b => b.Color,
+              new SelectList(
+                  new List<SelectListItem>
+                  {
+                      new SelectListItem { Text = "Black", Value = ((int)Phone.ColorName.Black).ToString()},
+                      new SelectListItem { Text = "White", Value = ((int)Phone.ColorName.White).ToString()},
+                      new SelectListItem { Text = "Red", Value = ((int)Phone.ColorName.Red).ToString()},
+                      new SelectListItem { Text = "Blue", Value = ((int)Phone.ColorName.Blue).ToString()},
+                      new SelectListItem { Text = "Yellow", Value = ((int)Phone.ColorName.Yellow).ToString()},
+
+                  }, "Text", "Text"),
+              "Select color",
+              new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.Color, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b => b.Type)
+        <br />
+        @Html.DropDownListFor(b => b.Type,
+              new SelectList(
+                  new List<SelectListItem>
+                  {
+                      new SelectListItem { Text = "Classic", Value = ((int)Phone.TypeName.Classic).ToString()},
+                      new SelectListItem { Text = "Smartphone", Value = ((int)Phone.TypeName.Smartphone).ToString()},
+
+                  }, "Text", "Text"),
+              "Select phone's type",
+              new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.Type, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b => b.SIM_slots, "SIM type:")
+        <br />
+        @Html.DropDownListFor(b => b.SIM_slots,
+              new SelectList(
+                  new List<SelectListItem>
+                  {
+                      new SelectListItem { Text = "Single Sim", Value = ((int)Phone.SimSlotsName.SingleSim).ToString()},
+                      new SelectListItem { Text = "Dual Sim", Value = ((int)Phone.SimSlotsName.DualSim).ToString()},
+                      new SelectListItem { Text = "Hybrid Sim", Value = ((int)Phone.SimSlotsName.HybridSim).ToString()},
+
+                  }, "Text", "Text"),
+              "Select SIM slots type",
+              new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.SIM_slots, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b => b.Operating_system, "Operating System:")
+        @Html.DropDownListFor(b => b.Operating_system,
+               new SelectList(
+                   new List<SelectListItem>
+                   {
+                       new SelectListItem { Text = "Android", Value = ((int)Phone.OperatingSystemName.Android).ToString()},
+                       new SelectListItem { Text = "IOS", Value = ((int)Phone.OperatingSystemName.IOS).ToString()},
+                       new SelectListItem { Text = "ThreadX", Value = ((int)Phone.OperatingSystemName.ThreadX).ToString()},
+
+                   }, "Text", "Text"),
+               "Select an operating system",
+               new { @class = "form-control" })
+        @Html.ValidationMessageFor(b => b.Operating_system, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.Image, "Image Link")
+        <br />
+        @Html.TextBoxFor(b => b.Image, null, new { placeholder = "Type in the phone's image link", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Image, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.Price, "Price")
+        <br />
+        @Html.TextBoxFor(b => b.Price, null, new { placeholder = "Type in the phone's price", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Price, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.ProcessorID, "Processor")
+        <br />
+        @Html.DropDownListFor(b => b.ProcessorID, new SelectList(ViewBag.ProcessorsList, "Value", "Text"), "Select a processor", new { @class = "form-control" }) @Html.ValidationMessageFor(b => b.ProcessorID, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(b =>  b.BatteryID, "Battery")
+        <br />
+        @Html.DropDownListFor(b => b.BatteryID, new SelectList(ViewBag.BatteriesList, "Value", "Text"), "Select a battery", new { @class = "form-control" }) @Html.ValidationMessageFor(b => b.BatteryID, "", new { @class = "text-danger" })
+        <br />
+
+        @Html.LabelFor(b => b.CamerasList, "Select cameras:")
+        <br />
+        for (int i = 0; i < Model.CamerasList.Count(); i++)
+        {
+            @Html.HiddenFor(b => b.CamerasList[i].Id)
+            @Html.HiddenFor(b => b.CamerasList[i].Name)
+            @Html.CheckBoxFor(b => b.CamerasList[i].Checked)
+            @Html.DisplayFor(b => b.CamerasList[i].Name)
+            <br />
+        }
+        <br />
+
+
+        @Html.LabelFor(b => b.Description, "Description:")
+        <br />
+        @Html.TextAreaFor(b => b.Description, new { placeholder = "Type in the phone's description", @class = "form-control" }) @Html.ValidationMessageFor(b => b.Description, "", new { @class = "text-danger" })
+        <br />
+
+
+        <button class="btn btn-primary" type="submit">Create</button>
+    }
+</div>

@@ -1,0 +1,44 @@
+﻿@model Shopping_Site.Models.IndexViewModel
+@{
+    ViewBag.Title = "Hello, this is your account";
+}
+<br />
+<h2>@ViewBag.Title.</h2>
+<br />
+
+@{bool isAdmin = User.IsInRole("Admin"); }
+
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+
+            @if (Model.HasPassword)
+            {
+
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+        </dd>
+        @if (isAdmin)
+        {
+            <dt>Orders:</dt>
+            <dd>
+                @Html.ActionLink("See all orders", "OrdersView", "Manage")
+            </dd>
+        }
+        @if (isAdmin)
+        {
+            <dt>Users:</dt>
+            <dd>
+                @Html.ActionLink("See all users", "UsersView", "Manage")
+            </dd>
+        }
+    </dl>
+</div>

@@ -1,0 +1,155 @@
+﻿@model  Shopping_Site.Models.Phone
+<body class="bg-dark text-white">
+    &nbsp;
+    <div class=" d-flex justify-content-lg-start">
+        <h3>Mobile phone @Model.Brand @Model.Name, @Model.Color</h3>
+    </div>
+
+    &nbsp;
+    <div class="row">
+
+        <div class="col-md-8">
+            <img src=@Model.Image class="img-thumbnail d-flex justify-content-center" style="width: 450px; height: 450px;">
+        </div>
+
+
+
+        <div class="col-md-4 ">
+            <h4 class="text-danger font-weight-bold">@Model.Price  $</h4>
+            @if (Model.Stock)
+            {
+
+                <h6 class="text-success font-weight-bold">In stock</h6>
+                using (Html.BeginForm(actionName: "AddToCart", controllerName: "Cart", method: FormMethod.Post, routeValues: new { id = Model.PhoneID }))
+                {
+                    <button class="btn btn-primary col-lg-6">Add to cart</button>
+                }
+                bool isAdmin = User.IsInRole("Admin");
+                if (isAdmin)
+                {
+                    <br />
+                    using (Html.BeginForm(actionName: "Edit", controllerName: "Phone", method: FormMethod.Get, routeValues: new { id = Model.PhoneID }))
+                    {
+                        <button class="btn btn-primary col-lg-6" type="submit">Update</button>
+                    }
+
+                    <br />
+                    using (Html.BeginForm(actionName: "Delete", controllerName: "Phone", method: FormMethod.Post, routeValues: new { id = Model.PhoneID }))
+                    {
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button class="btn btn-primary col-lg-6" type="submit">Delete</button>
+                    }
+                }
+            }
+            else
+            {
+                <h6 class="text-danger font-weight-bold">Out of stock</h6>
+                <h6 class="text-danger font-weight-bold">This product is currently not in stock. You cannot add the product to your cart.</h6>
+                bool isAdmin = User.IsInRole("Admin");
+                if (isAdmin)
+                {
+                    <br />
+                    using (Html.BeginForm(actionName: "Edit", controllerName: "Phone", method: FormMethod.Get, routeValues: new { id = Model.PhoneID }))
+                    {
+                        <button class="btn btn-primary col-lg-6" type="submit">Update</button>
+                    }
+
+                    <br />
+                    using (Html.BeginForm(actionName: "Delete", controllerName: "Phone", method: FormMethod.Post, routeValues: new { id = Model.PhoneID }))
+                    {
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button class="btn btn-primary col-lg-6" type="submit">Delete</button>
+                    }
+                }
+            }
+
+
+        </div>
+
+    </div>
+
+
+    &nbsp;
+    <div class="container ">
+
+        <div class="bg-dark text-white">
+            <h5 class="font-weight-bold text-white">Description:</h5>
+
+            <p class="text-white">@Model.Description</p>
+
+        </div>
+
+        <h4 class="font-weight-bold text-white"><u>Specifications</u></h4>
+
+        &nbsp;
+
+        <div class="bg-dark text-white">
+            <h5 class="font-weight-bold text-white">General features:</h5>
+
+            <p class="text-white">Brand: @Model.Brand</p>
+            <p class="text-white">Phone type: @Model.Type</p>
+            <p class="text-white">Color: @Model.Color</p>
+            <p class="text-white">SIM Slots: @Model.SIM_slots</p>
+            <p class="text-white">Operating system: @Model.Operating_system</p>
+            <p class="text-white">Capacity: @Model.Capacity gb</p>
+            <p class="text-white">Memory RAM: @Model.Memory gb</p>
+        </div>
+
+        &nbsp;
+
+        <div class="bg-dark text-white">
+            <h5 class="font-weight-bold text-white">Processor features:</h5>
+
+            <p class="text-white">Processor model: @Model.Processor.Model</p>
+            <p class="text-white">Number of cores: @Model.Processor.Cores_number </p>
+            <p class="text-white">Frequency: @Model.Processor.Frequency GHz</p>
+        </div>
+        &nbsp;
+
+        <div class="bg-dark text-white">
+            <h5 class="font-weight-bold text-white">Cameras features:</h5>
+            @if (Model.Cameras.Count > 0)
+            {
+                foreach (var camera in Model.Cameras)
+                {
+                    <p class="text-white">Camera resolution: @camera.Resolution MP</p>
+                    <p class="text-white">Type of camera: @camera.Type </p>
+                    if (camera.Flash)
+                    {
+                        <p class="text-white">Flash: Yes</p>
+                    }
+                    else
+                    {
+                        <p class="text-white">Flash: No</p>
+                    }
+
+                    if (camera.Features.Count > 0)
+                    {
+
+                        var CameraFeatures = "";
+
+                        foreach (var feature in camera.Features)
+                        {
+                            CameraFeatures += feature.Name + ", ";
+                        }
+                        CameraFeatures = CameraFeatures.Remove(CameraFeatures.Length - 2, 2);
+                        <p class="text-white">Features: @CameraFeatures</p>
+                    }
+                    else
+                    {
+                        <p class="text-white">No features</p>
+                    }
+                }
+            }
+        </div>
+        &nbsp;
+
+        <div class="bg-dark text-white">
+            <h5 class="font-weight-bold text-white">Battery features:</h5>
+
+            <p class="text-white">Battery model: @Model.Battery.Name</p>
+            <p class="text-white">Battery capacity: @Model.Battery.Capacity mAh </p>
+        </div>
+
+    </div>
+</body>
